@@ -1,0 +1,19 @@
+.carousel {
+    position: relative;
+}
+
+.control-dots {
+    display: inline-flex!important;
+    /* width: 100px!important; */
+    top: 72%;
+    /* bottom: 200px; */
+    left: 120px;
+    position: absolute;
+}
+
+.dot {
+    width: 50px!important;
+    height: 3px!important;
+    border-radius: 10px!important;
+    /* height: 100px!important; */
+}

@@ -1,0 +1,11 @@
+.item::after {
+    position: absolute;
+    border-bottom: 22px;
+    bottom: 0;
+    content: "";
+    background-image: url("../../assets/images/flower.svg"),url("../../assets/images/flower1.svg");
+    background-repeat: no-repeat;
+    background-position: 216px -35px, 0px 100px;
+    width: 295px;
+    height: 141px;
+}
