@@ -6,7 +6,7 @@ export const PublicApp = () => {
 	return (
 		<Routes>
 			<Route
-				path="/public"
+				path="/"
 				element={
 					<header className="bg-[#191919] text-white">
 						<div className="p-5 max-w-[1240px] mx-auto  flex justify-between">

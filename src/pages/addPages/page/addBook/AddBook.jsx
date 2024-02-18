@@ -5,6 +5,7 @@ import axios from "axios";
 import { tokenContext } from "../../../../context/TokenContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsCamera } from "react-icons/bs";
+import { modeContext } from "../../../../context/ModeContext";
 
 export const AddBook = () => {
 	const formData = new FormData();
@@ -13,6 +14,7 @@ export const AddBook = () => {
 	const [genre, setGenre] = useState([]);
 	const [id, setId] = useState(0);
 	const [author, setAuthor] = useState([]);
+	const {mode, setMode} = useContext(modeContext)
 
 	useEffect(() => {
 		axios
@@ -73,10 +75,10 @@ export const AddBook = () => {
 
 	return (
 		<div className="min-h-screen flex items-center">
-			<div className="bg-[#1B1B1B] min-h-screen w-1/2 py-[130px]"></div>
-			<div className="bg-[#191919] min-h-screen w-1/2 pt-12">
+			<div className={("min-h-screen w-1/2 py-[130px] ") + (mode ? "bg-[#F3F3F3]" : "bg-[#1B1B1B]")}></div>
+			<div className={"min-h-screen w-1/2 pt-12 " + (mode ? "" : "bg-[#191919]")}>
 				<form
-					className="flex flex-col w-[328px] gap-4 mx-auto text-white"
+					className={"flex flex-col w-[328px] gap-4 mx-auto " + (mode ? "text-black opacity-70" : "text-white")}
 					onSubmit={formik.handleSubmit}
 				>
 					<h2 className="font-semibold text-[32px]">Add Book</h2>
@@ -165,7 +167,7 @@ export const AddBook = () => {
 						value={formik.values.description}
 						id="description"
 					></textarea>
-					<label className="inline-flex flex-col mb-5 absolute left-[180px] top-[130px] w-[325px] h-[428px] cursor-pointer bg-[#4D4D4D] border-2 border-dashed rounded-2xl justify-center opacity-35">
+					<label className={"inline-flex flex-col mb-5 absolute left-[180px] top-[130px] w-[325px] h-[428px] cursor-pointer border-2 border-dashed rounded-2xl justify-center " + (mode ? "bg-white border-stone-500 text-stone-500" : "bg-[#4D4D4D] opacity-35")}>
 						<FaPlus size={60} className="mb-2 mx-auto" />
 						<span className="block mx-auto w-[200px] text-center">
 							Click or drag file to this area to upload
@@ -181,7 +183,7 @@ export const AddBook = () => {
 					</label>
 					<button
 						type="submit"
-						className="py-3 px-5 text-center font-medium bg-white text-black rounded-3xl"
+						className={"py-3 px-5 text-center font-medium rounded-3xl " + (mode ? "bg-[#152540] text-white" : "text-black bg-white")}
 					>
 						Create
 					</button>

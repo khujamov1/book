@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { modeContext } from "../../../context/ModeContext";
 
 export const Header = () => {
+
+	const {mode, setMode} = useContext(modeContext);
 	return (
 		<header className="bg-[#191919]">
 				<nav>

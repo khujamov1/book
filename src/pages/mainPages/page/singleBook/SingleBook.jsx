@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { modeContext } from "../../../../context/ModeContext";
 import { tokenContext } from "../../../../context/TokenContext";
 
 export const SingleBook = () => {
+	const { mode, setMode } = useContext(modeContext);
 	const [book, setBook] = useState("");
 	const { token, setToken } = useContext(tokenContext);
 	const [author, setAuthor] = useState("");
@@ -73,33 +75,50 @@ export const SingleBook = () => {
 					<ul className="flex flex-col gap-[14px] mb-10">
 						<li className="text-stone-500 text-xl flex justify-between">
 							Sahifalar soni:
-							<span className="inline-block text-white">
+							<span
+								className={
+									"inline-block " +
+									(mode ? "text-black" : "text-white")
+								}
+							>
 								{book.page} page
 							</span>
 						</li>
 						<li className="text-stone-500 text-xl flex justify-between">
 							Chop etilgan:
-							<span className="inline-block text-white">
+							<span
+								className={
+									"inline-block " +
+									(mode ? "text-black" : "text-white")
+								}
+							>
 								{book.year} year
 							</span>
 						</li>
 						<li className="text-stone-500 text-xl flex justify-between">
 							Kitob narxi:
-							<span className="inline-block text-white">
+							<span
+								className={
+									"inline-block " +
+									(mode ? "text-black" : "text-white")
+								}
+							>
 								${book.price}
 							</span>
 						</li>
 					</ul>
 					<strong className="text-[#C9AC8C] text-xl font-medium">
-						To'liq ma'lumot 
+						To'liq ma'lumot
 					</strong>
-					<hr className="mb-5 mt-2"/>
-					<p className="text-white opacity-80">{book.description}</p>
+					<hr className="mb-5 mt-2" />
+					<p className={"inline-block " + (mode ? "text-black" : "text-white")}>{book.description}</p>
 				</div>
 			</div>
-			<div>
-				<strong className="text-[#C9AC8C] mb-8 block pb-4 font-medium text-xl border-b">Asarlari</strong>
-				<ul>
+			<div className="pb-16">
+				<strong className="text-[#C9AC8C] mb-8 block pb-4 font-medium text-xl border-b">
+					Asarlari
+				</strong>
+				<ul className="pb-8">
 					{asar.map((item) => {
 						return (
 							<li key={item.id}>
@@ -113,7 +132,13 @@ export const SingleBook = () => {
 									<strong className="text-[#C9AC8C]">
 										{item.title}
 									</strong>
-									<p className="text-white opacity-60">
+									<p
+										className={
+											mode
+												? "text-stone-700"
+												: "text-white opacity-60"
+										}
+									>
 										{author.first_name +
 											" " +
 											author.last_name}
